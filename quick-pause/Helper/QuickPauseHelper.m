@@ -7,12 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BTHSpotifyInterface.h"
 #import "QuickPauseHelper.h"
 @import AVFoundation;
 
+NSString *const kMacSpeakerUID = @"BuiltInSpeakerDevice";
+
 @implementation QuickPauseHelper : NSObject
 
-+ (NSString *)getCurrentOutputDeviceUID
+- (id)init {
+    self = [super init];
+    if (self) {
+      [self setPlayer:[[BTHSpotifyInterface alloc] init]];
+    }
+    return self;
+}
+
+- (NSString *)getCurrentOutputDeviceUID
 {
     NSString *deviceUID = @"";
 
@@ -42,5 +53,24 @@
         free(audioDevices);
     }
     return deviceUID;
+}
+- (void) checkPlaybackDevices {
+  NSString* uid = [self getCurrentOutputDeviceUID];
+
+  if (![uid isEqualToString:[self previousDeviceUID]]) { // if speaker has changed
+    if (![uid isEqualToString:kMacSpeakerUID]) { // if speaker is not mac speaker
+      if ([self hasQuickPaused] && [[self.player playerState] isEqualToString:@"Paused"]) {
+        [self.player play];
+        self.hasQuickPaused = NO;
+      }
+    } else { // if speaker switched to mac speaker
+      if ([[self.player playerState] isEqualToString:@"Playing"]) {
+        [self.player pause];
+        self.hasQuickPaused = YES;
+      }
+    }
+  }
+
+  [self setPreviousDeviceUID:uid];
 }
 @end

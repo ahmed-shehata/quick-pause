@@ -14,11 +14,19 @@
 int main(int argc, const char * argv[]) {
   @autoreleasepool {
     NSLog(@"Welcome to quick-pause cli");
-    NSObject<BTHPlayerInterface> *player = [[BTHSpotifyInterface alloc] init];
-    NSLog(@"%@",[player currentTrack]);
+    QuickPauseHelper* helper = [[QuickPauseHelper alloc] init];
 
-    NSString* uid = [QuickPauseHelper getCurrentOutputDeviceUID];
-    NSLog(@"Devices");
+    NSDate *now = [[NSDate alloc] init];
+    NSTimer *timer = [[NSTimer alloc] initWithFireDate:now
+    interval:.01
+    target:helper
+    selector:@selector(checkPlaybackDevices)
+    userInfo:nil
+    repeats:YES];
+
+    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+    [runLoop addTimer:timer forMode:NSDefaultRunLoopMode];
+    [runLoop run];
 
   }
   return 0;
