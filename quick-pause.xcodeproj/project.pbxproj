@@ -12,6 +12,7 @@
 		FDAABD3023A5535A006D1F45 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAABD2F23A5535A006D1F45 /* AppKit.framework */; };
 		FDAABD3223A55361006D1F45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAABD3123A55361006D1F45 /* Foundation.framework */; };
 		FDAABD3423A55367006D1F45 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAABD3323A55367006D1F45 /* ScriptingBridge.framework */; };
+		FDAABD3923A59085006D1F45 /* QuickPauseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAABD3823A59085006D1F45 /* QuickPauseHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,11 +34,12 @@
 		FDAABD2623A55222006D1F45 /* BTHSpotifyInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHSpotifyInterface.h; sourceTree = "<group>"; };
 		FDAABD2723A55222006D1F45 /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		FDAABD2823A55222006D1F45 /* BTHSpotifyInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHSpotifyInterface.m; sourceTree = "<group>"; };
-		FDAABD2B23A55222006D1F45 /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
 		FDAABD2F23A5535A006D1F45 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		FDAABD3123A55361006D1F45 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FDAABD3323A55367006D1F45 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		FDAABD3523A57951006D1F45 /* quick-pause.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "quick-pause.entitlements"; sourceTree = "<group>"; };
+		FDAABD3723A59071006D1F45 /* QuickPauseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickPauseHelper.h; sourceTree = "<group>"; };
+		FDAABD3823A59085006D1F45 /* QuickPauseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickPauseHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +76,10 @@
 		FDAABD1C23A551F8006D1F45 /* quick-pause */ = {
 			isa = PBXGroup;
 			children = (
+				FDAABD3623A59060006D1F45 /* Helper */,
 				FDAABD3523A57951006D1F45 /* quick-pause.entitlements */,
 				FDAABD2423A55222006D1F45 /* BTHPlayerInterface.h */,
 				FDAABD2523A55222006D1F45 /* Spotify Interface */,
-				FDAABD2B23A55222006D1F45 /* Spotify.h */,
 				FDAABD1D23A551F8006D1F45 /* main.m */,
 			);
 			path = "quick-pause";
@@ -101,6 +103,15 @@
 				FDAABD2F23A5535A006D1F45 /* AppKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDAABD3623A59060006D1F45 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FDAABD3723A59071006D1F45 /* QuickPauseHelper.h */,
+				FDAABD3823A59085006D1F45 /* QuickPauseHelper.m */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +173,7 @@
 			files = (
 				FDAABD1E23A551F8006D1F45 /* main.m in Sources */,
 				FDAABD2C23A55222006D1F45 /* BTHSpotifyInterface.m in Sources */,
+				FDAABD3923A59085006D1F45 /* QuickPauseHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
