@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		FDAABD1E23A551F8006D1F45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAABD1D23A551F8006D1F45 /* main.m */; };
+		FDAABD2C23A55222006D1F45 /* BTHSpotifyInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAABD2823A55222006D1F45 /* BTHSpotifyInterface.m */; };
+		FDAABD3023A5535A006D1F45 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAABD2F23A5535A006D1F45 /* AppKit.framework */; };
+		FDAABD3223A55361006D1F45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAABD3123A55361006D1F45 /* Foundation.framework */; };
+		FDAABD3423A55367006D1F45 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAABD3323A55367006D1F45 /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,15 @@
 /* Begin PBXFileReference section */
 		FDAABD1A23A551F8006D1F45 /* quick-pause */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "quick-pause"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDAABD1D23A551F8006D1F45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FDAABD2423A55222006D1F45 /* BTHPlayerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHPlayerInterface.h; sourceTree = "<group>"; };
+		FDAABD2623A55222006D1F45 /* BTHSpotifyInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHSpotifyInterface.h; sourceTree = "<group>"; };
+		FDAABD2723A55222006D1F45 /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
+		FDAABD2823A55222006D1F45 /* BTHSpotifyInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHSpotifyInterface.m; sourceTree = "<group>"; };
+		FDAABD2B23A55222006D1F45 /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spotify.h; sourceTree = "<group>"; };
+		FDAABD2F23A5535A006D1F45 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		FDAABD3123A55361006D1F45 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FDAABD3323A55367006D1F45 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		FDAABD3523A57951006D1F45 /* quick-pause.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "quick-pause.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDAABD3023A5535A006D1F45 /* AppKit.framework in Frameworks */,
+				FDAABD3423A55367006D1F45 /* ScriptingBridge.framework in Frameworks */,
+				FDAABD3223A55361006D1F45 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +59,7 @@
 			children = (
 				FDAABD1C23A551F8006D1F45 /* quick-pause */,
 				FDAABD1B23A551F8006D1F45 /* Products */,
+				FDAABD2E23A55359006D1F45 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +74,33 @@
 		FDAABD1C23A551F8006D1F45 /* quick-pause */ = {
 			isa = PBXGroup;
 			children = (
+				FDAABD3523A57951006D1F45 /* quick-pause.entitlements */,
+				FDAABD2423A55222006D1F45 /* BTHPlayerInterface.h */,
+				FDAABD2523A55222006D1F45 /* Spotify Interface */,
+				FDAABD2B23A55222006D1F45 /* Spotify.h */,
 				FDAABD1D23A551F8006D1F45 /* main.m */,
 			);
 			path = "quick-pause";
+			sourceTree = "<group>";
+		};
+		FDAABD2523A55222006D1F45 /* Spotify Interface */ = {
+			isa = PBXGroup;
+			children = (
+				FDAABD2623A55222006D1F45 /* BTHSpotifyInterface.h */,
+				FDAABD2723A55222006D1F45 /* Spotify.h */,
+				FDAABD2823A55222006D1F45 /* BTHSpotifyInterface.m */,
+			);
+			path = "Spotify Interface";
+			sourceTree = "<group>";
+		};
+		FDAABD2E23A55359006D1F45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FDAABD3323A55367006D1F45 /* ScriptingBridge.framework */,
+				FDAABD3123A55361006D1F45 /* Foundation.framework */,
+				FDAABD2F23A5535A006D1F45 /* AppKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDAABD1E23A551F8006D1F45 /* main.m in Sources */,
+				FDAABD2C23A55222006D1F45 /* BTHSpotifyInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +178,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -194,7 +236,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -238,6 +280,7 @@
 		FDAABD2223A551F8006D1F45 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "quick-pause/quick-pause.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86QC6P336V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -248,6 +291,7 @@
 		FDAABD2323A551F8006D1F45 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "quick-pause/quick-pause.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86QC6P336V;
 				ENABLE_HARDENED_RUNTIME = YES;

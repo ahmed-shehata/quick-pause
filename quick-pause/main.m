@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BTHSpotifyInterface.h"
 
 int main(int argc, const char * argv[]) {
   @autoreleasepool {
       // insert code here...
       NSLog(@"Hello, World!");
+
+    NSObject<BTHPlayerInterface> *player = [[BTHSpotifyInterface alloc] init];
+    //  [player play];
+      NSLog(@"%@",[player currentTrack]);
   }
   return 0;
 }
