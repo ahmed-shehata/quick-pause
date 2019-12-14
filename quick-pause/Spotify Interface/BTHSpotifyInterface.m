@@ -12,16 +12,13 @@
 -(id)init {
     if (self = [super init]) {
       @try {
-         spotify = [[SBApplication alloc] initWithBundleIdentifier:[self appBundleIdentifier]];
+         spotify = (SpotifyApplication*)[[SBApplication alloc] initWithBundleIdentifier:[self appBundleIdentifier]];
       }
       @catch (NSException *exception) {
          NSLog(@"%@", exception.reason);
       }
     }
 
-  SpotifyEPlS playerState = [spotify playerState];
-
-    
     return self;
 }
 
@@ -68,8 +65,7 @@
 
 -(NSDictionary *)currentTrack {
     if ([spotify isRunning] == YES) {
-      SpotifyEPlS playerState = [spotify playerState];
-        if ([spotify playerState] != SpotifyEPlSStopped) {
+      if ([spotify playerState] != SpotifyEPlSStopped) {
             SpotifyTrack *currentTrack = [spotify currentTrack];
             NSMutableDictionary *currentTrack_ = [NSMutableDictionary dictionaryWithCapacity:1];
             [currentTrack_ setObject:[currentTrack name] forKey:@"title"];

@@ -11,11 +11,8 @@
 
 int main(int argc, const char * argv[]) {
   @autoreleasepool {
-      // insert code here...
-      NSLog(@"Hello, World!");
-
-    NSObject<BTHPlayerInterface> *player = [[BTHSpotifyInterface alloc] init];
-    //  [player play];
+      NSLog(@"Welcome to quick-pause cli");
+      NSObject<BTHPlayerInterface> *player = [[BTHSpotifyInterface alloc] init];
       NSLog(@"%@",[player currentTrack]);
   }
   return 0;
