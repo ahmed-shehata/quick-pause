@@ -13,5 +13,5 @@ Inspired by Apple AirPod's [Ear Detection feature](https://support.apple.com/en-
 [AuKey's B60 Headphones](https://www.amazon.co.uk/AUKEY-Bluetooth-Headphones-Resistance-Microphone-Black/dp/B07N19TD5V) have QuickSwitch feature which automatically turns off the bluetooth earphones whenever magnetically attached. Combining this with quick-pause will give you seamless control over your music.
 
 ## Usage
-- Build and run quick-pause in cli. 
+- Build and run quick-pause in cli. Make sure your favorite Audio Output device is currenty set as default (Mac). 
 - Currently only supports Spotify (Mac)
