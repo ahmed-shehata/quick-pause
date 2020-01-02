@@ -17,8 +17,15 @@
   if (self) {
     [self setPlayer:[[BTHSpotifyInterface alloc] init]];
     [self setDefaultDeviceUID:[self getDefaultOutputDeviceUID]];
+		[self printCurrentFocusedDeviceName:[self getDefaultOutputDeviceName]];
   }
   return self;
+}
+
+- (void) printCurrentFocusedDeviceName:(NSString*) deviceName {
+	NSLog(@"Currently focusing on: %@\n",deviceName);
+	NSLog(@"When the default output device changes from %@, Spotify music will be paused and will resume when %@ is selected again.\n",deviceName,deviceName);
+
 }
 
 - (NSString*)getDefaultOutputDeviceUID {
@@ -49,6 +56,36 @@
 	}
 
   return deviceUID;
+}
+
+- (NSString*)getDefaultOutputDeviceName {
+	NSString *deviceName = @"";
+  AudioDeviceID outputDeviceID;
+  UInt32 outputDeviceIDSize = sizeof (outputDeviceID);
+  OSStatus status;
+  AudioObjectPropertyAddress propertyAOPA;
+  NSString *result;
+  UInt32 propSize = sizeof(CFStringRef);
+  propertyAOPA.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
+  propertyAOPA.mScope = kAudioDevicePropertyScopeOutput;
+  propertyAOPA.mElement = kAudioObjectPropertyElementMaster;
+
+  status = AudioObjectGetPropertyData(
+                                      kAudioObjectSystemObject,
+                                      &propertyAOPA,
+                                      0,
+                                      NULL,
+                                      &outputDeviceIDSize,
+                                      &outputDeviceID);
+
+	propertyAOPA.mSelector = kAudioDevicePropertyDeviceNameCFString;
+  OSStatus error = AudioObjectGetPropertyData(outputDeviceID, &propertyAOPA, 0, NULL, &propSize, &result);
+
+	if (error == noErr) {
+		deviceName = result;
+	}
+
+  return deviceName;
 }
 
 
