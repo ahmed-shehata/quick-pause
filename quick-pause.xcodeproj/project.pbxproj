@@ -89,8 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				FDAABD2623A55222006D1F45 /* BTHSpotifyInterface.h */,
-				FDAABD2723A55222006D1F45 /* Spotify.h */,
 				FDAABD2823A55222006D1F45 /* BTHSpotifyInterface.m */,
+				FDAABD2723A55222006D1F45 /* Spotify.h */,
 			);
 			path = "Spotify Interface";
 			sourceTree = "<group>";
