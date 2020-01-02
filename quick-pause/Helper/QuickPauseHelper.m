@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "BTHSpotifyInterface.h"
 #import "QuickPauseHelper.h"
-@import AVFoundation;
-
-NSString *const kMacSpeakerUID = @"BuiltInSpeakerDevice";
 
 @implementation QuickPauseHelper : NSObject
 
@@ -19,58 +16,55 @@ NSString *const kMacSpeakerUID = @"BuiltInSpeakerDevice";
   self = [super init];
   if (self) {
     [self setPlayer:[[BTHSpotifyInterface alloc] init]];
+    [self setDefaultDeviceUID:[self getDefaultOutputDeviceUID]];
   }
   return self;
 }
 
-- (NSString *)getCurrentOutputDeviceUID
-{
-  NSString *deviceUID = @"";
+- (NSString*)getDefaultOutputDeviceUID {
+	NSString *deviceUID = @"";
+  AudioDeviceID outputDeviceID;
+  UInt32 outputDeviceIDSize = sizeof (outputDeviceID);
+  OSStatus status;
+  AudioObjectPropertyAddress propertyAOPA;
+  NSString *result;
+  UInt32 propSize = sizeof(CFStringRef);
+  propertyAOPA.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
+  propertyAOPA.mScope = kAudioDevicePropertyScopeOutput;
+  propertyAOPA.mElement = kAudioObjectPropertyElementMaster;
 
-  AudioObjectPropertyAddress aopa;
-  aopa.mSelector = kAudioHardwarePropertyDevices;
-  aopa.mScope = kAudioDevicePropertyScopeOutput;
-  aopa.mElement = kAudioObjectPropertyElementMaster;
+  status = AudioObjectGetPropertyData(
+                                      kAudioObjectSystemObject,
+                                      &propertyAOPA,
+                                      0,
+                                      NULL,
+                                      &outputDeviceIDSize,
+                                      &outputDeviceID);
 
-  UInt32 propSize;
-  OSStatus error = AudioObjectGetPropertyDataSize(kAudioObjectSystemObject, &aopa, 0, NULL, &propSize);
-  if (error == noErr) {
-    int deviceCount = propSize / sizeof(AudioDeviceID);
-    AudioDeviceID *audioDevices = (AudioDeviceID *)malloc(propSize);
-    error = AudioObjectGetPropertyData(kAudioObjectSystemObject, &aopa, 0, NULL, &propSize, audioDevices);
-    if (error == noErr) {
-      UInt32 propSize = sizeof(CFStringRef);
-      for(int i = 1; i <= deviceCount; i++) {
-        NSString *result;
-        aopa.mSelector = kAudioDevicePropertyDeviceUID;
-        error = AudioObjectGetPropertyData(audioDevices[i], &aopa, 0, NULL, &propSize, &result);
-        if (error == noErr) {
-          deviceUID = result;
-          break;
-        }
-      }
-    }
-    free(audioDevices);
-  }
+	propertyAOPA.mSelector = kAudioDevicePropertyDeviceUID;
+  OSStatus error = AudioObjectGetPropertyData(outputDeviceID, &propertyAOPA, 0, NULL, &propSize, &result);
+
+	if (error == noErr) {
+		deviceUID = result;
+	}
+
   return deviceUID;
 }
-- (void) checkPlaybackDevices {
-  NSString* uid = [self getCurrentOutputDeviceUID];
 
-  if (![uid isEqualToString:[self previousDeviceUID]]) { // if speaker has changed
-    if (![uid isEqualToString:kMacSpeakerUID]) { // if speaker is not mac speaker
-      if ([self hasQuickPaused] && [[self.player playerState] isEqualToString:@"Paused"]) {
-        [self.player play];
-        self.hasQuickPaused = NO;
-      }
-    } else { // if speaker switched to mac speaker
-      if ([[self.player playerState] isEqualToString:@"Playing"]) {
-        [self.player pause];
-        self.hasQuickPaused = YES;
-      }
-    }
+
+- (void) pauseIfDefaultDeviceChanged {
+  NSString* uid = [self getDefaultOutputDeviceUID];
+
+  if (![uid isEqualToString:self.defaultDeviceUID] &&
+			[[self.player playerState] isEqualToString:@"Playing"]) { // if speaker has changed and music is playing
+    [self.player pause];
+    self.hasQuickPaused = YES;
+  } else if ([uid isEqualToString:self.defaultDeviceUID] &&
+						 [self hasQuickPaused] &&
+						 [[self.player playerState] isEqualToString:@"Paused"]) {
+    [self.player play];
+    self.hasQuickPaused = NO;
   }
 
-  [self setPreviousDeviceUID:uid];
 }
 @end

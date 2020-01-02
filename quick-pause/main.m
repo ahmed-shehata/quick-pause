@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
     NSTimer *timer = [[NSTimer alloc] initWithFireDate:now
     interval:.01
     target:helper
-    selector:@selector(checkPlaybackDevices)
+    selector:@selector(pauseIfDefaultDeviceChanged)
     userInfo:nil
     repeats:YES];
 

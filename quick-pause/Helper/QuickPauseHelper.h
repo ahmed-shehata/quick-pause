@@ -8,13 +8,14 @@
 
 #ifndef QuickPauseHelper_h
 #define QuickPauseHelper_h
+@import AVFoundation;
 @interface QuickPauseHelper : NSObject
-- (NSString *)getCurrentOutputDeviceUID;
-- (void) checkPlaybackDevices;
+- (void) pauseIfDefaultDeviceChanged;
 
 @property bool hasQuickPaused;
 @property NSString* previousDeviceUID;
 @property NSObject<BTHPlayerInterface> *player;
+@property NSString* defaultDeviceUID;
 
 @end
 
