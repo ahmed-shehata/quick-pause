@@ -1,5 +1,9 @@
 # quick-pause
 
+<p align="center">
+  <img width="360" height="450" src="https://github.com/ahmed-shehata/quick-pause/blob/master/quickswitch.jpg?raw=true">
+</p>
+
 ## Description
 Quick Pause your music when audio output device changes. Simulate AirPod's Ear Detection feature.
 
