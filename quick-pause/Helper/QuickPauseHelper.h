@@ -16,6 +16,7 @@
 @property NSString* previousDeviceUID;
 @property NSObject<BTHPlayerInterface> *player;
 @property NSString* defaultDeviceUID;
+@property NSString* previousPlayerState;
 
 @end
 

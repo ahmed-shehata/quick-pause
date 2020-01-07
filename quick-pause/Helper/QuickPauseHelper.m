@@ -18,6 +18,7 @@
     [self setPlayer:[[BTHSpotifyInterface alloc] init]];
     [self setDefaultDeviceUID:[self getDefaultOutputDeviceUID]];
 		[self printCurrentFocusedDeviceName:[self getDefaultOutputDeviceName]];
+		[self setPreviousPlayerState:[self.player playerState]];
   }
   return self;
 }
@@ -88,8 +89,19 @@
   return deviceName;
 }
 
+- (void) changeDefaultDeviceIfNeeded { // if user manually presses play
+
+	if ([self.previousPlayerState isEqualToString:@"Paused"] &&
+			[[self.player playerState]isEqualToString:@"Playing"]) {
+		[self setDefaultDeviceUID:[self getDefaultOutputDeviceUID]];
+		[self printCurrentFocusedDeviceName:[self getDefaultOutputDeviceName]];
+	}
+
+}
+
 
 - (void) pauseIfDefaultDeviceChanged {
+	[self changeDefaultDeviceIfNeeded];
   NSString* uid = [self getDefaultOutputDeviceUID];
 
   if (![uid isEqualToString:self.defaultDeviceUID] &&
@@ -102,6 +114,8 @@
     [self.player play];
     self.hasQuickPaused = NO;
   }
+
+	[self setPreviousPlayerState:[self.player playerState]];
 
 }
 @end
